@@ -78,3 +78,5 @@ greeter = W3.eth.contract(
   address=tx_receipt.contractAddress,
   abi=abi
 )
+print("Output from greet()")
+print(greeter.functions.greet().call())
