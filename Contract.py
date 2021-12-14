@@ -61,18 +61,18 @@ result = W3.eth.sendRawTransaction(signed_txn.rawTransaction)
 tx_receipt = None#W3.eth.getTransactionReceipt(result)
 
 count = 0
-while tx_receipt is None and (count < 30):
-  time.sleep(10)
+while tx_receipt is None and (count < 300):
+  time.sleep(1)
   try:
     tx_receipt = W3.eth.getTransactionReceipt(result)
   except:
-    print('.')
+    print('.',end='')
 
 if tx_receipt is None:
   print (" {'status': 'failed', 'error': 'timeout'} ")
 #diagnostics
 #print (tx_receipt)
-print("Contract address is:",tx_receipt.contractAddress)
+print("\nContract address is:",tx_receipt.contractAddress)
 
 greeter = W3.eth.contract(
   address=tx_receipt.contractAddress,
@@ -99,13 +99,13 @@ while tx_receipt is None and (count < 300):
   try:
     tx_receipt = W3.eth.getTransactionReceipt(result)
   except:
-    print('.')
+    print('.',end='')
 
 if tx_receipt is None:
   print (" {'status': 'failed', 'error': 'timeout'} ")
 
 #tx_hash = greeter.functions.setGreeting('Namaste').transact({"from":account1.address})
 #tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-print("Output from greet()")
+print("\nOutput from greet()")
 print(greeter.functions.greet().call({"from":account1.address}))
 #'Namaste'
