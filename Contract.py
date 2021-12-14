@@ -33,3 +33,9 @@ compiled_sol = compile_standard({
              }
          }
  })
+bytecode = compiled_sol['contracts']['Greeter.sol']['Greeter']['evm']['bytecode']['object']
+abi = json.loads(compiled_sol['contracts']['Greeter.sol']['Greeter']['metadata'])['output']['abi']
+W3 = Web3(WebsocketProvider('wss://ropsten.infura.io/ws/v3/%s'%infuraKey))
+account1=Account.from_key(privateKey);
+address1=account1.address
+Greeter = W3.eth.contract(abi=abi, bytecode=bytecode)
