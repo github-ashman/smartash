@@ -1,4 +1,4 @@
-signed_txn = W3.eth.account.sign_transaction(tx_dict, private_key=privateKey)
+
 #diagnostics
 #print(signed_txn)
 print("Deploying the Smart Contract")
