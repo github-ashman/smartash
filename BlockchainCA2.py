@@ -12,7 +12,7 @@ with open(".pk") as pkfile:
  privateKey=pkfile.read()
 with open(".infura") as infurafile:
  infuraKey=infurafile.read()
-# Solidity source code
+
 compiled_sol = compile_standard({
      "language": "Solidity",
      "sources": {
@@ -39,9 +39,7 @@ account1=Account.from_key(privateKey);
 address1=account1.address
 Greeter = W3.eth.contract(abi=abi, bytecode=bytecode)
 nonce = W3.eth.getTransactionCount(address1)
-#diagnostics
-#print(nonce)
-# Submit the transaction that deploys the contract
+
 tx_dict = Greeter.constructor().buildTransaction({
 'chainId': 3,
 'gas': 1400000,
@@ -50,13 +48,10 @@ tx_dict = Greeter.constructor().buildTransaction({
 'from':address1
 })
 signed_txn = W3.eth.account.sign_transaction(tx_dict, private_key=privateKey)
-#diagnostics
-#print(signed_txn)
+
 print("Deploying the Smart Contract")
 result = W3.eth.sendRawTransaction(signed_txn.rawTransaction)
-#diagnostics
-#print(result)
-#print('-----------------------------------')
+
 tx_receipt = None#W3.eth.getTransactionReceipt(result)
 
 count = 0
@@ -69,8 +64,7 @@ while tx_receipt is None and (count < 300):
 
 if tx_receipt is None:
   print (" {'status': 'failed', 'error': 'timeout'} ")
-#diagnostics
-#print (tx_receipt)
+
 print("\nContract address is:",tx_receipt.contractAddress)
 
 greeter = W3.eth.contract(
