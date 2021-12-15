@@ -1,4 +1,4 @@
-pragma solidity >= 0.7.3;
+pragma solidity = 0.7.3;
 
 contract BlockchainCA2 {
     event UpdatedMessages(string oldStr, string newStr);
