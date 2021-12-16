@@ -73,5 +73,14 @@ greeter = W3.eth.contract(
   address=tx_receipt.contractAddress,
   abi=abi
 )
+
+tx_dict = greeter.function.setGreeting('Hello Paul, this is Ashley 10584204').buildTransaction({
+'chainId': 3,
+'gas': 1400000,
+'gasPrice': w3.toWei('40', 'gwei'),
+'nonce': nonce,
+'from':address1
+})
+
 print("\nOutput from greet()")
 print(greeter.functions.greet().call({"from":account1.address}))
