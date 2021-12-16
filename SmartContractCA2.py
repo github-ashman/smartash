@@ -37,7 +37,7 @@ abi = json.loads(compiled_sol['contracts']['Greeter.sol']['Greeter']['metadata']
 W3 = Web3(WebsocketProvider('wss://ropsten.infura.io/ws/v3/%s'%infuraKey))
 account1=Account.from_key(privateKey);
 address1=account1.address
-greeter = W3.eth.contract(abi=abi, bytecode=bytecode)
+Greeter = W3.eth.contract(abi=abi, bytecode=bytecode)
 nonce = W3.eth.getTransactionCount(address1)
 
 tx_dict = greeter.constructor().buildTransaction({
