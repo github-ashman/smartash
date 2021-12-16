@@ -46,7 +46,7 @@ print("Deploying the Smart Contract")
 result = W3.eth.sendRawTransaction(signed_txn.rawTransaction)
 
 
-tx_dict = greeter.constructor.setGreeting('Hello Paul, this is Ashley 10584204').buildTransaction({
+tx_dict = Greeter.constructor.setGreeting('Hello Paul, this is Ashley 10584204').buildTransaction({
 'chainId': 3,
 'gas': 1400000,
 'gasPrice': w3.toWei('40', 'gwei'),
