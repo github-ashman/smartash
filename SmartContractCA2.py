@@ -72,4 +72,4 @@ greeter = W3.eth.contract(
   abi=abi
 )
 print("\nOutput from greet()")
-print(greeter.functions.greet().call({"from":account1.address}))
+print(greeter.functions.greet().call())
