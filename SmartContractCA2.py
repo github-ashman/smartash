@@ -54,7 +54,7 @@ print("Deploying the Smart Contract")
 result = W3.eth.sendRawTransaction(signed_txn.rawTransaction)
 
 
-tx_dict = Greeter.functions.setGreeting('Hello Paul, this is Ashley 10584204').buildTransaction({
+tx_dict = greeter.functions.setGreeting('Hello Paul, this is Ashley 10584204').buildTransaction({
 'chainId': 3,
 'gas': 1400000,
 'gasPrice': w3.toWei('40', 'gwei'),
@@ -77,9 +77,9 @@ if tx_receipt is None:
 
 print("\nContract address is:",tx_receipt.contractAddress)
 
-Greeter = W3.eth.contract(
+greeter = W3.eth.contract(
   address=tx_receipt.contractAddress,
   abi=abi
 )
 print("\nOutput from greet()")
-print(Greeter.functions.greet().call({"from":account1.address}))
+print(greeter.functions.greet().call({"from":account1.address}))
