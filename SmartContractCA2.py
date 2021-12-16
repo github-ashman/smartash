@@ -74,13 +74,28 @@ greeter = W3.eth.contract(
   abi=abi
 )
 
-tx_dict = greeter.function.setGreeting('Hello Paul, this is Ashley 10584204').buildTransaction({
-'chainId': 3,
-'gas': 1400000,
-'gasPrice': w3.toWei('40', 'gwei'),
-'nonce': nonce,
-'from':address1
+tx_dict = greeter.functions.setGreeting('Namaste').buildTransaction({
+  'chainId': 3,
+  'gas': 1400000,
+  'gasPrice': w3.toWei('40', 'gwei'),
+  'nonce': nonce,
+  'from':address1
 })
+
+signed_txn = W3.eth.account.sign_transaction(tx_dict, private_key=privateKey)
+result = W3.eth.sendRawTransaction(signed_txn.rawTransaction)
+tx_receipt = None#W3.eth.getTransactionReceipt(result)
+
+count = 0
+while tx_receipt is None and (count < 300):
+  time.sleep(1)
+  try:
+    tx_receipt = W3.eth.getTransactionReceipt(result)
+  except:
+    print('.',end='')
+
+if tx_receipt is None:
+  print (" {'status': 'failed', 'error': 'timeout'} ")
 
 print("\nOutput from greet()")
 print(greeter.functions.greet().call({"from":account1.address}))
