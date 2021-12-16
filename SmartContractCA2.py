@@ -42,8 +42,8 @@ nonce = W3.eth.getTransactionCount(address1)
 
 tx_dict = Greeter.constructor().buildTransaction({
 'chainId': 3,
-'gas': 1400000,
-'gasPrice': w3.toWei('40', 'gwei'),
+'gas': 1000,
+'gasPrice': w3.toWei('1', 'gwei'),
 'nonce': nonce,
 'from':address1
 })
@@ -62,7 +62,7 @@ greeter = W3.eth.contract(
 
 tx_dict = greeter.functions.setGreeting('Namaste').buildTransaction({
   'chainId': 3,
-  'gas': 10000,
+  'gas': 1000,
   'gasPrice': w3.toWei('1', 'gwei'),
   'nonce': nonce,
   'from':address1
