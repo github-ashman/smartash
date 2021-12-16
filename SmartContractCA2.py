@@ -40,6 +40,20 @@ address1=account1.address
 Greeter = W3.eth.contract(abi=abi, bytecode=bytecode)
 nonce = W3.eth.getTransactionCount(address1)
 
+tx_dict = Greeter.constructor().buildTransaction({
+'chainId': 3,
+'gas': 1400000,
+'gasPrice': w3.toWei('40', 'gwei'),
+'nonce': nonce,
+'from':address1
+})
+
+signed_txn = W3.eth.account.sign_transaction(tx_dict, private_key=privateKey)
+
+print("Deploying the Smart Contract")
+result = W3.eth.sendRawTransaction(signed_txn.rawTransaction)
+
+
 tx_dict = Greeter.functions.setGreeting('Hello Paul, this is Ashley 10584204').buildTransaction({
 'chainId': 3,
 'gas': 1400000,
@@ -47,10 +61,6 @@ tx_dict = Greeter.functions.setGreeting('Hello Paul, this is Ashley 10584204').b
 'nonce': nonce,
 'from':address1
 })
-signed_txn = W3.eth.account.sign_transaction(tx_dict, private_key=privateKey)
-
-print("Deploying the Smart Contract")
-result = W3.eth.sendRawTransaction(signed_txn.rawTransaction)
 
 tx_receipt = None#W3.eth.getTransactionReceipt(result)
 
