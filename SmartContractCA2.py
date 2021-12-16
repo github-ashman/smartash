@@ -40,7 +40,7 @@ address1=account1.address
 Greeter = W3.eth.contract(abi=abi, bytecode=bytecode)
 nonce = W3.eth.getTransactionCount(address1)
 
-tx_dict = greeter.functions.setGreeting('Namaste').buildTransaction({
+tx_dict = greeter.functions.setGreeting('Hello Paul, this is Ashley-10584204').buildTransaction({
 'chainId': 3,
 'gas': 1400000,
 'gasPrice': w3.toWei('40', 'gwei'),
