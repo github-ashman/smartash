@@ -52,11 +52,6 @@ signed_txn = W3.eth.account.sign_transaction(tx_dict, private_key=privateKey)
 print("Deploying the Smart Contract")
 result = W3.eth.sendRawTransaction(signed_txn.rawTransaction)
 
-greeter = W3.eth.contract(
-  address=tx_receipt.contractAddress,
-  abi=abi
-)
-
 tx_receipt = None#W3.eth.getTransactionReceipt(result)
 
 count = 0
@@ -71,6 +66,11 @@ if tx_receipt is None:
   print (" {'status': 'failed', 'error': 'timeout'} ")
 
 print("\nContract address is:",tx_receipt.contractAddress)
+
+greeter = W3.eth.contract(
+  address=tx_receipt.contractAddress,
+  abi=abi
+)
 
 print("\nOutput from greet()")
 print(greeter.functions.greet().call({"from":account1.address}))
