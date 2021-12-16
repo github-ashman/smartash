@@ -52,6 +52,11 @@ signed_txn = W3.eth.account.sign_transaction(tx_dict, private_key=privateKey)
 print("Deploying the Smart Contract")
 result = W3.eth.sendRawTransaction(signed_txn.rawTransaction)
 
+greeter = W3.eth.contract(
+  address=tx_receipt.contractAddress,
+  abi=abi
+)
+
 tx_receipt = None#W3.eth.getTransactionReceipt(result)
 
 count = 0
